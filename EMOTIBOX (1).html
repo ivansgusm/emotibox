@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EMOTIBOX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3EEFB;--ink:#252B3D;--mute:#5E6478;--card:#fff;--pur:#6B4FD3;--pur-l:#E8E0FF;--teal:#2FA396;--teal-l:#DCF3EC;--line:#E4DFEA;--shell:#B9AAF0;--shell2:#F6EDE4;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1A1826;--ink:#F1EEFA;--mute:#B2ACC8;--card:#262236;--pur:#A18CFF;--pur-l:#322B55;--teal:#4CC9BB;--teal-l:#1F3B3A;--line:#3A3450;--shell:#6C5BB5;--shell2:#3A3350}}
+:root[data-theme="dark"]{--bg:#1A1826;--ink:#F1EEFA;--mute:#B2ACC8;--card:#262236;--pur:#A18CFF;--pur-l:#322B55;--teal:#4CC9BB;--teal-l:#1F3B3A;--line:#3A3450;--shell:#6C5BB5;--shell2:#3A3350}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:18px;line-height:1.5;display:flex;justify-content:center;padding:20px 14px 40px}
+.device{width:100%;max-width:520px;background:var(--shell);border-radius:44px;padding:16px;box-shadow:0 22px 50px rgba(107,79,211,.28)}
+.face{background:var(--shell2);border-radius:32px;padding:14px}
+.brand{display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;color:var(--pur);letter-spacing:.04em;font-size:15px;margin:2px 0 10px}
+.screen{background:var(--card);border-radius:24px;padding:20px 18px;min-height:540px;display:flex;flex-direction:column}
+h1,h2,p{margin:0}
+.q{font-size:26px;font-weight:800;text-align:center;line-height:1.2;margin:6px 0 4px}
+.hint{text-align:center;color:var(--mute);font-size:16px;margin-bottom:20px}
+.emos{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.emo{border:0;border-radius:22px;padding:18px 8px;font:inherit;font-weight:800;font-size:18px;color:#252B3D;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;box-shadow:0 5px 12px rgba(0,0,0,.14);transition:transform .15s}
+.emo span{font-size:44px;line-height:1}
+.emo:last-child{grid-column:span 2;flex-direction:row;justify-content:center;gap:12px}
+.emo:hover{transform:translateY(-3px)}
+.emo:focus-visible,button:focus-visible{outline:4px solid var(--pur);outline-offset:3px}
+.top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.back{font:inherit;font-weight:800;font-size:15px;border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.chip{margin-left:auto;display:flex;align-items:center;gap:8px;font-weight:800;font-size:17px}
+.chip i{font-style:normal;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:22px}
+.lead{font-size:20px;font-weight:800;line-height:1.25;margin:4px 0 14px}
+.list{display:grid;gap:12px}
+.ex{border:2px solid var(--line);border-radius:20px;padding:14px 16px;background:var(--bg)}
+.ex.on{border-color:var(--teal);background:var(--teal-l)}
+.ex .m{font-size:14px;font-weight:800;color:var(--teal)}
+.ex b{display:block;font-size:19px;line-height:1.25}
+.ex p{color:var(--mute);font-size:16px;margin:2px 0 10px}
+.ex button{font:inherit;font-weight:800;font-size:15px;border-radius:999px;border:2px solid var(--pur);background:transparent;color:var(--pur);padding:7px 16px;cursor:pointer}
+.ex button[aria-pressed="true"]{background:var(--pur);color:#fff}
+.breath{display:flex;align-items:center;gap:16px;margin-top:12px;padding:14px 18px;border-radius:20px;background:var(--teal-l)}
+.orb{width:56px;height:56px;border-radius:50%;background:var(--teal);flex:none;transition:transform 4s ease-in-out}
+.orb.in{transform:scale(1.4)}
+.breath b{font-size:21px}
+.qr img{background:#fff;padding:8px;border-radius:12px;image-rendering:pixelated}
+.qr{margin-top:12px;border:3px solid var(--teal);border-radius:20px;padding:16px;text-align:center;color:var(--mute);font-weight:700;font-size:15px}
+.qr span{display:block;font-size:34px}
+.after{margin-top:auto;padding-top:18px;font-weight:800}
+.fb{display:flex;gap:10px;margin-top:8px}
+.fb button{flex:1;font-size:26px;border:2px solid var(--line);background:var(--card);border-radius:16px;padding:8px;cursor:pointer}
+.fb button:hover{border-color:var(--pur)}
+.msg{margin-top:10px;color:var(--teal);font-weight:700;font-size:16px;min-height:24px}
+.foot{text-align:center;color:var(--shell);margin-top:12px;display:flex;justify-content:center}
+.led{width:30px;height:30px;border-radius:50%;border:3px solid #6FE3E0;background:var(--shell2)}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.orb,.emo{transition:none}}
+</style>
+</head>
+<body>
+<main class="device">
+  <div class="face">
+    <div class="brand">♡ EMOTIBOX</div>
+    <div class="screen" aria-live="polite">
+
+      <div id="s1">
+        <h1 class="q">Como você está se sentindo?</h1>
+        <p class="hint">Toque na emoção para receber seus exercícios.</p>
+        <div class="emos" id="emos"></div>
+      </div>
+
+      <div id="s2" hidden></div>
+
+    </div>
+    <div class="foot"><div class="led"></div></div>
+  </div>
+</main>
+
+<script>
+var E=[
+{n:"Raiva",e:"😡",c:"#EF7F6E",d:"Vamos baixar a intensidade primeiro.",x:[
+ {t:"Respiração 4–6",m:"3 min",p:"Inspire contando até 4 e solte contando até 6. Repita 6 vezes.",b:1},
+ {t:"Aperte e solte",m:"2 min",p:"Pegue um objeto sensorial, aperte forte por 5 segundos e solte devagar. Repita 10 vezes."},
+ {t:"Escreva sem filtro",m:"5 min",p:"No diário, escreva o que causou a raiva em 3 frases. Depois leia e escolha o que fazer."}]},
+{n:"Tristeza",e:"😢",c:"#7BA7E0",d:"Sem pressa. Um passo pequeno já conta.",x:[
+ {t:"Dê nome ao sentimento",m:"3 min",p:"No diário, complete: “Hoje me sinto triste porque…”. Não precisa ser perfeito."},
+ {t:"Respiração suave",m:"2 min",p:"Mão no peito, inspire pelo nariz por 4 segundos e solte devagar. Repita 8 vezes.",b:1},
+ {t:"Um gesto de carinho",m:"5 min",p:"Envie uma mensagem para alguém de confiança ou prepare algo que você goste de beber."}]},
+{n:"Ansiedade",e:"😰",c:"#F6C34E",d:"Vamos trazer você de volta para o agora.",x:[
+ {t:"Respiração guiada",m:"2 min",p:"Inspire 4 segundos, segure 4 e solte em 6. Acompanhe o círculo.",b:1},
+ {t:"Técnica 5-4-3-2-1",m:"3 min",p:"Nomeie 5 coisas que vê, 4 que toca, 3 que ouve, 2 que cheira e 1 que saboreia."},
+ {t:"Áudio calmo",m:"5 min",p:"Escaneie o QR Code, ouça o áudio relaxante e respire no seu próprio ritmo.",q:1}]},
+{n:"Cansaço mental",e:"😴",c:"#AEA6CC",d:"Sua mente pede uma pausa de verdade.",x:[
+ {t:"Pausa sem telas",m:"5 min",p:"Afaste-se do celular e do computador. Olhe pela janela ou para um ponto distante."},
+ {t:"Alongamento rápido",m:"2 min",p:"Gire os ombros 10 vezes, incline o pescoço para cada lado e abra os braços."},
+ {t:"Uma coisa de cada vez",m:"3 min",p:"Escolha só uma tarefa para agora e anote no diário. O resto espera."}]},
+{n:"Alegria",e:"😊",c:"#2FA396",d:"Vale aproveitar e guardar esse momento.",x:[
+ {t:"Registre o momento",m:"3 min",p:"No diário, escreva o que trouxe essa alegria e como o corpo se sente."},
+ {t:"Gratidão em 3",m:"2 min",p:"Pense em 3 coisas boas de hoje e inspire fundo a cada uma.",b:1},
+ {t:"Compartilhe",m:"5 min",p:"Conte para alguém o que aconteceu ou agradeça a quem fez parte disso."}]}];
+var QR="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQAQAAAACoxAthAAADVUlEQVR42u2cTW7bSBBGX5EEaCAL+gbUTag5SY4iaTfHog4SQLqBtAhAYyh+s+hu/ljW2HQyQDJTvRAgup9aLha6q74qysTakeGII4448gshSLOdrNQ+l6Q2Vwt1D6aT6bSY7kZ2ZD1SKow9cDMz204+ZRvA4oTTiDy99WG5TlD31MN07dmN7AgABzN75TY3s4JzwTkDOJtZtkD2M9dST9PT9GBqF7ukG9mRn4Dseo5F9ElkX5f7mFvMkfVI8frCyxNwLAUc/xiOhVvMkZ+DSFIHcPiiNlc7BnIpR6g15hNuMUfWI1cLYx6VhWwUOGegOMFjfkc+d1ZqmR3U342c+sUwmr+sHqj1ziqbAmDjRnbkMWJm9sShAJjHYMcibmLPIRu1uxAuvMv76YoNyI3syNJFrs8p4LfJu7YgI1242kzDkHRh17GT1NF0EMTeoKdJmlJRXVzpdWT9CD5GqRC/NUoyWh7VXQ1R6T0R3ruRHVmM9g2vuvMxCeI+tvCunlpTuaoSlfuYI5/dx3bBu0JVNNQFcrVx+6IeRmf7d33s4vflP+pjlHFr26V4rM2lnnqM/U0nqIRX3h35pI/BLpTdc+2TmNZIktok21YaR/ZGKupGduSfU1E4/NlRdrwYefrLrai/FVjU085GdXGLOfJjXWoptVwMS6nlND0LKkY4W4GmSwlprnbW3VENbmRHIhKqSod5+WnyKbOMc8Y1W65Sxq62XQel1AM0s9cAn9zIjiyRwxO82Ba42RaA8xRu2eYDEVgzcLIBQoEgS0KJG9njsdgFFMYxFqH6+bzzBjDQYpVS6qCcau7Bze7OYb8vjnxG7lAXD8ogqRHczMbG73BWemnAkR/o7igVj8Kbja/1N4sHJZw3Vulu63MjO7IqFR2Py1TojLJtfGbqgaTmRnbkIz6WNNl9KXU0inWB+ib104n5bolz8/Ar+H1xJHapxWwUyNiGtrTUpbaBq+2v9ngVS4rc4kHR3cWN7Mj9uJkVqR9So8rxgVVmsm09RNm20oov9rz+f7n4rfxd5I63PG1sg0yyrVWXh6sEtfbucTw3siN3TwoD/coQ7lUn5JgpTBPdyP97pHs3MZi93qeimrV2pB9JmLWouY85snaY/86VI4448psjfwMh3BLMatlU3AAAAABJRU5ErkJggg==";
+var s1=document.getElementById("s1"),s2=document.getElementById("s2"),box=document.getElementById("emos"),timer=null;
+E.forEach(function(o,i){var b=document.createElement("button");b.className="emo";b.style.background=o.c;b.innerHTML="<span>"+o.e+"</span>"+o.n;b.onclick=function(){show(i)};box.appendChild(b)});
+function show(i){var o=E[i];clearInterval(timer);
+ var h='<div class="top"><button class="back" type="button" id="bk">‹ Voltar</button><div class="chip"><i style="background:'+o.c+'">'+o.e+'</i>'+o.n+'</div></div><p class="lead">'+o.d+'</p><div class="list">';
+ var hasB=false,hasQ=false;
+ o.x.forEach(function(x){if(x.b)hasB=true;if(x.q)hasQ=true;h+='<div class="ex"><span class="m">'+x.m+'</span><b>'+x.t+'</b><p>'+x.p+'</p><button type="button" aria-pressed="false">Iniciar</button></div>'});
+ h+='</div>';
+ if(hasB)h+='<div class="breath"><div class="orb" id="orb"></div><div><b id="bt">Inspire</b></div></div>';
+ if(hasQ)h+='<div class="qr"><img src="'+QR+'" alt="QR Code do áudio relaxante" width="160" height="160"><br>Escaneie para ouvir um áudio relaxante</div>';
+ h+='<div class="after">Como você está agora?<div class="fb"><button type="button" aria-label="Pior">😣</button><button type="button" aria-label="Igual">😐</button><button type="button" aria-label="Melhor">🙂</button></div><p class="msg" id="msg"></p></div>';
+ s2.innerHTML=h;s1.hidden=true;s2.hidden=false;
+ document.getElementById("bk").onclick=function(){clearInterval(timer);s2.hidden=true;s1.hidden=false};
+ [].forEach.call(s2.querySelectorAll(".ex button"),function(b){b.onclick=function(){var on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",on);b.textContent=on?"Feito ✓":"Iniciar";b.parentNode.classList.toggle("on",on)}});
+ var M=["Obrigado por contar. Tente outro exercício ou fale com alguém de confiança.","Tudo bem continuar igual. Experimente outro exercício.","Que bom! Registre isso no diário para acompanhar sua evolução."];
+ [].forEach.call(s2.querySelectorAll(".fb button"),function(b,k){b.onclick=function(){document.getElementById("msg").textContent=M[k]}});
+ var orb=document.getElementById("orb");
+ if(orb){var inh=false,bt=document.getElementById("bt");var tick=function(){inh=!inh;orb.classList.toggle("in",inh);bt.textContent=inh?"Inspire":"Solte devagar"};setTimeout(tick,50);timer=setInterval(tick,4000)}
+}
+</script>
+</body>
+</html>
